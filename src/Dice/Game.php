@@ -67,7 +67,7 @@ class Game
         $_SESSION["userWins"] = $_SESSION["userWins"] ?? 0;
 
         if ($this->sum["user"] <= 21) {
-            $this->opponentResult();
+            $this->opponentResult(0);
             if ($this->sum["user"] == 21) {
                 $result = "<strong>WOW! You got 21!</strong> ";
             }
@@ -94,9 +94,9 @@ class Game
         return $standings;
     }
 
-    private function opponentResult()
+    private function opponentResult($zero)
     {
-        $this->sum["cpu"] = 0;
+        $this->sum["cpu"] = $zero;
         while ($this->sum["cpu"] < 21) {
             $this->newRoll("cpu");
             if ($this->sum["cpu"] > $this->sum["user"]) {
