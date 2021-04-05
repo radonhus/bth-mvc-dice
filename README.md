@@ -1,6 +1,6 @@
 # Game 21
 
-This is a small web-based game project to practice on object-oriented
+This is a small web-based game project to practice object-oriented
 programming. The game was programmed as part of a course at Blekinge
 Technical University, BTH.
 
