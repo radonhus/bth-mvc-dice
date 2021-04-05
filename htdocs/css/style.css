@@ -1,0 +1,51 @@
+body {
+    overflow-y: scroll;
+    width: 800px;
+    margin: 8px auto;
+    padding-left: 1em;
+    border-left: 1px solid #ccc;
+    font-family: "Arial", "Helvetica", sans-serif;
+}
+
+main {
+    min-height: 20em;
+}
+
+footer {
+    border-top: 1px solid #ccc;
+    min-height: 4em;
+    text-align: center;
+}
+
+.game21-form {
+    background-color: #f7f7f7;
+    margin-bottom: 1em;
+    padding: 0;
+}
+
+.game21-form label {
+    font-weight: bold;
+}
+
+.game21-form label,
+.game21-form select,
+.game21-form .submit {
+    margin: 1em;
+}
+
+.game21-form .submit {
+    padding: 0.4em;
+    font-weight: bold;
+}
+
+.dice-utf8 {
+    font-size: 50px;
+    margin: 0;
+}
+
+.dice-utf8 .dice-1::after { content: "\2680"; font-style: normal; }
+.dice-utf8 .dice-2::after { content: "\2681"; font-style: normal; }
+.dice-utf8 .dice-3::after { content: "\2682"; font-style: normal; }
+.dice-utf8 .dice-4::after { content: "\2683"; font-style: normal; }
+.dice-utf8 .dice-5::after { content: "\2684"; font-style: normal; }
+.dice-utf8 .dice-6::after { content: "\2685"; font-style: normal; }
