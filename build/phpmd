@@ -1,4 +1,1 @@
 C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Router\Router.php:23	The method dispatch() has a Cyclomatic Complexity of 19. The configured cyclomatic complexity threshold is 10.
-C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\Dice.php	-	Unexpected token: int, line: 9, col: 13, file: C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\Dice.php.
-C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\DiceHand.php	-	Unexpected token: array, line: 9, col: 13, file: C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\DiceHand.php.
-C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\Game.php	-	Unexpected token: int, line: 20, col: 13, file: C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\Game.php.
