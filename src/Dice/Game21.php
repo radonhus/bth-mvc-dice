@@ -6,16 +6,14 @@ namespace riax20\Dice;
 
 use function Mos\Functions\{
     renderView,
-    sendResponse
+    sendResponse,
+    url
 };
 
 use riax20\Dice\DiceHand;
 use riax20\Dice\GraphicalDice;
 
-// Spara själva Game-instansen i en session-variabel istället för de olika
-// variablerna!!
-
-class Game
+class Game21
 {
     private int $nrOfDice;
     private array $latestDiceImages;
@@ -32,17 +30,25 @@ class Game
         $this->latestDiceImages = [];
     }
 
-    public function playGame(): void
+    public function playGame(): array
     {
         $data = [
-            "message" => "Your choice: roll your dice or stop!"
+            "message" => "Roll your dice again, or stop - your choice!"
         ];
+
+        if (isset($_POST["clearstandings"])) {
+            $_SESSION["cpuWins"] = 0;
+            $_SESSION["userWins"] = 0;
+        }
 
         if (isset($_POST["stop"])) {
             $data["message"] = $this->gameOver();
             $data["standings"] = $this->standings();
-            $this->callRenderView($data);
-            return;
+            $data["diceImages"] = $this->latestDiceImages;
+            $data["hideOnGameOver"] = $this->hideOnGameOver;
+            $data["showOnGameOver"] = $this->showOnGameOver;
+            $data["userSum"] = $this->sum["user"];
+            return $data;
         }
 
         $this->latestDiceImages = $this->newRoll("user");
@@ -50,20 +56,11 @@ class Game
              $data["message"] = $this->gameOver();
              $data["standings"] = $this->standings();
         }
-        $this->callRenderView($data);
-        return;
-
-    }
-
-    private function callRenderView($data): void
-    {
         $data["diceImages"] = $this->latestDiceImages;
         $data["hideOnGameOver"] = $this->hideOnGameOver;
         $data["showOnGameOver"] = $this->showOnGameOver;
         $data["userSum"] = $this->sum["user"];
-
-        $body = renderView("layout/diceplay.php", $data);
-        sendResponse($body);
+        return $data;
     }
 
     private function gameOver(): string

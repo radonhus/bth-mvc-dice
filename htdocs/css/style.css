@@ -18,9 +18,9 @@ footer {
 }
 
 .game21-form {
-    background-color: #f7f7f7;
+    background-color: #f2f2f2;
+    padding: 1em;
     margin-bottom: 1em;
-    padding: 0;
 }
 
 .game21-form label {
@@ -30,7 +30,7 @@ footer {
 .game21-form label,
 .game21-form select,
 .game21-form .submit {
-    margin: 1em;
+    margin: 0.5em;
 }
 
 .game21-form .submit {
@@ -39,7 +39,8 @@ footer {
 }
 
 .dice-utf8 {
-    font-size: 50px;
+    font-size: 5em;
+    line-height: 0.5em;
     margin: 0;
 }
 
