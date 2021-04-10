@@ -8,14 +8,17 @@ use riax20\Yatzy\Round;
 
 class Yatzy
 {
-    public int $roundsCounter;
+    private int $roundsCounter;
+    private string $roundsLeft;
+    private int $currentRound;
     private int $totalPoints;
-    private object $currentRound;
+    private object $currentHand;
 
     public function __construct()
     {
         $this->roundsCounter = 0;
         $this->totalPoints = 0;
+        $this->roundsLeft = "123456";
     }
 
     public function startNewRound(): array
@@ -24,15 +27,17 @@ class Yatzy
         $data = [];
 
         $this->roundsCounter += 1;
-        $this->currentRound = new Round();
-        $rollsAndValues = $this->currentRound->getRollsAndValues();
+        $this->currentHand = new Round();
+        $rollsAndValues = $this->currentHand->getRollsAndValues();
 
         $data["nrOfRerolls"] = $rollsAndValues[0];
         $data["diceArray"] = array_slice($rollsAndValues, -5);
-        $data["round"] = $this->roundsCounter;
+        $data["nrOfRoundsPlayed"] = $this->roundsCounter;
+        $roundsLeft = str_split($this->roundsLeft);
+        $data["roundsLeft"] = $roundsLeft;
         $data["totalPoints"] = $this->totalPoints;
-        $data["hideOnRoundOver"] = "";
-        $data["showOnRoundOver"] = "hidden";
+        $data["hideOn2RerollsMade"] = "";
+        $data["showOn2RerollsMade"] = "hidden";
         $data["hideOnGameOver"] = "";
         $data["showOnGameOver"] = "hidden";
 
@@ -41,7 +46,18 @@ class Yatzy
 
     public function play($post): array
     {
-        if (isset($post["nextround"])) {
+        $data = [];
+
+        if (isset($post["roundOver"])) {
+            $this->roundsLeft = str_replace($post["selectedRound"],"", $this->roundsLeft);
+            $this->currentRound = intval($post["selectedRound"]);
+
+            $rollsAndValues = $this->currentHand->getRollsAndValues();
+            $data["diceArray"] = array_slice($rollsAndValues, -5);
+
+            $this->calculatePoints($data["diceArray"]);
+            $data["totalPoints"] = $this->totalPoints;
+
             return $this->startNewRound();
         }
         $diceToReroll = [];
@@ -53,28 +69,35 @@ class Yatzy
         return $this->reRoll($diceToReroll);
     }
 
-    public function reRoll($diceToReroll): array
+    private function reRoll($diceToReroll): array
     {
         $rollsAndValues = [];
         $data = [];
 
-        $rollsAndValues = $this->currentRound->rollDice($diceToReroll);
+        $rollsAndValues = $this->currentHand->rollDice($diceToReroll);
 
         $data["nrOfRerolls"] = $rollsAndValues[0];
         $data["diceArray"] = array_slice($rollsAndValues, -5);
-        $data["round"] = $this->roundsCounter;
+        $data["nrOfRoundsPlayed"] = $this->roundsCounter;
+        $roundsLeft = str_split($this->roundsLeft);
+        $data["roundsLeft"] = $roundsLeft;
         $data["totalPoints"] = $this->totalPoints;
-        $data["hideOnRoundOver"] = "";
-        $data["showOnRoundOver"] = "hidden";
+        $data["hideOn2RerollsMade"] = "";
+        $data["showOn2RerollsMade"] = "hidden";
         $data["hideOnGameOver"] = "";
         $data["showOnGameOver"] = "hidden";
 
-        if ($data["nrOfRerolls"] == 2) {
-            $this->calculatePoints($data["diceArray"]);
-            $data["totalPoints"] = $this->totalPoints;
-            $data["hideOnRoundOver"] = "hidden";
-            $data["showOnRoundOver"] = "";
+        if ($data["nrOfRerolls"] >= 2) {
+            $data["hideOn2RerollsMade"] = "hidden";
+            $data["showOn2RerollsMade"] = "";
             if ($this->roundsCounter == 6) {
+                $this->currentRound = intval($this->roundsLeft);
+
+                $this->calculatePoints($data["diceArray"]);
+                $data["totalPoints"] = $this->totalPoints;
+
+                $this->roundsLeft = "";
+                $data["roundsLeft"] = [""];
                 $data["hideOnGameOver"] = "hidden";
                 $data["showOnGameOver"] = "";
             }
@@ -85,7 +108,7 @@ class Yatzy
     private function calculatePoints($diceArray): void
     {
         foreach ($diceArray as $value) {
-            if ($value == $this->roundsCounter) {
+            if ($value == $this->currentRound) {
                 $this->totalPoints += $value;
             }
         }
