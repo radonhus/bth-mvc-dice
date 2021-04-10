@@ -2,127 +2,95 @@
 
 declare(strict_types=1);
 
-namespace riax20\Dice;
+namespace riax20\Yatzy;
 
-use function Mos\Functions\{
-    renderView,
-    sendResponse,
-    url
-};
+use riax20\Yatzy\Round;
 
-use riax20\Dice\DiceHand;
-use riax20\Dice\GraphicalDice;
-
-class Game21
+class Yatzy
 {
-    private int $nrOfDice;
-    private array $latestDiceImages;
-    private string $hideOnGameOver;
-    private string $showOnGameOver;
-    private array $sum;
+    public int $roundsCounter;
+    private int $totalPoints;
+    private object $currentRound;
 
-    public function __construct($nrOfDice)
+    public function __construct()
     {
-        $this->nrOfDice = $nrOfDice;
-        $this->sum = [ "user" => 0, "cpu" => 0 ];
-        $this->hideOnGameOver = "";
-        $this->showOnGameOver = "hidden";
-        $this->latestDiceImages = [];
+        $this->roundsCounter = 0;
+        $this->totalPoints = 0;
     }
 
-    public function playGame(): array
+    public function startNewRound(): array
     {
-        $data = [
-            "message" => "Roll your dice again, or stop - your choice!"
-        ];
+        $rollsAndValues = [];
+        $data = [];
 
-        if (isset($_POST["clearstandings"])) {
-            $_SESSION["cpuWins"] = 0;
-            $_SESSION["userWins"] = 0;
-        }
+        $this->roundsCounter += 1;
+        $this->currentRound = new Round();
+        $rollsAndValues = $this->currentRound->getRollsAndValues();
 
-        if (isset($_POST["stop"])) {
-            $data["message"] = $this->gameOver();
-            $data["standings"] = $this->standings();
-            $data["diceImages"] = $this->latestDiceImages;
-            $data["hideOnGameOver"] = $this->hideOnGameOver;
-            $data["showOnGameOver"] = $this->showOnGameOver;
-            $data["userSum"] = $this->sum["user"];
-            return $data;
-        }
+        $data["nrOfRerolls"] = $rollsAndValues[0];
+        $data["diceArray"] = array_slice($rollsAndValues, -5);
+        $data["round"] = $this->roundsCounter;
+        $data["totalPoints"] = $this->totalPoints;
+        $data["hideOnRoundOver"] = "";
+        $data["showOnRoundOver"] = "hidden";
+        $data["hideOnGameOver"] = "";
+        $data["showOnGameOver"] = "hidden";
 
-        $this->latestDiceImages = $this->newRoll("user");
-        if ($this->sum["user"] >= 21) {
-             $data["message"] = $this->gameOver();
-             $data["standings"] = $this->standings();
-        }
-        $data["diceImages"] = $this->latestDiceImages;
-        $data["hideOnGameOver"] = $this->hideOnGameOver;
-        $data["showOnGameOver"] = $this->showOnGameOver;
-        $data["userSum"] = $this->sum["user"];
         return $data;
     }
 
-    private function gameOver(): string
+    public function play($post): array
     {
-        $this->hideOnGameOver = "hidden";
-        $this->showOnGameOver = "";
-        $_SESSION["cpuWins"] = $_SESSION["cpuWins"] ?? 0;
-        $_SESSION["userWins"] = $_SESSION["userWins"] ?? 0;
-        $result = "";
-
-        if ($this->sum["user"] <= 21) {
-            $this->opponentResult(0);
-            if ($this->sum["user"] == 21) {
-                $result = "<strong>WOW! You got 21!</strong> ";
-            }
-
-            if (($this->sum["cpu"] > 21) || ($this->sum["cpu"] < $this->sum["user"])) {
-                $_SESSION["userWins"] += 1;
-                $result .= "You won!";
-                $result .= " You got " . $this->sum["user"] . " points ";
-                $result .= "and your opponent got " . $this->sum["cpu"] . " points.";
-                return $result;
-            }
-
-            $_SESSION["cpuWins"] += 1;
-            $result .= "You lost!";
-            $result .= " You got " . $this->sum["user"] . " points ";
-            $result .= "and your opponent got " . $this->sum["cpu"] . " points.";
-            return $result;
+        if (isset($post["nextround"])) {
+            return $this->startNewRound();
         }
-
-        $_SESSION["cpuWins"] += 1;
-        $result = "You lost! You got " . $this->sum["user"] . " points.";
-        return $result;
-    }
-
-    private function standings(): string
-    {
-        $standings = "Overall standings, Player vs. Opponent: ";
-        $standings .= $_SESSION["userWins"] . " – " . $_SESSION["cpuWins"];
-        return $standings;
-    }
-
-    private function opponentResult($zero)
-    {
-        $this->sum["cpu"] = $zero;
-        while ($this->sum["cpu"] < 21) {
-            $this->newRoll("cpu");
-            if ($this->sum["cpu"] > $this->sum["user"]) {
-                break;
+        $diceToReroll = [];
+        for ($i=0; $i <5 ; $i++) {
+            if (isset($post[strval($i)])) {
+                array_push($diceToReroll, $i);
             }
         }
+        return $this->reRoll($diceToReroll);
     }
 
-    private function newRoll($player): array
+    public function reRoll($diceToReroll): array
     {
-        $roll = new DiceHand($this->nrOfDice);
-        $rollValuesArray = $roll->getLastRolls();
-        $nrOfRolls = count($rollValuesArray);
-        for ($i=0; $i < $nrOfRolls ; $i++) {
-            $this->sum[$player] += intval($rollValuesArray[$i]);
+        $rollsAndValues = [];
+        $data = [];
+
+        $rollsAndValues = $this->currentRound->rollDice($diceToReroll);
+
+        $data["nrOfRerolls"] = $rollsAndValues[0];
+        $data["diceArray"] = array_slice($rollsAndValues, -5);
+        $data["round"] = $this->roundsCounter;
+        $data["totalPoints"] = $this->totalPoints;
+        $data["hideOnRoundOver"] = "";
+        $data["showOnRoundOver"] = "hidden";
+        $data["hideOnGameOver"] = "";
+        $data["showOnGameOver"] = "hidden";
+
+        if ($data["nrOfRerolls"] == 2) {
+            $this->calculatePoints($data["diceArray"]);
+            $data["totalPoints"] = $this->totalPoints;
+            $data["hideOnRoundOver"] = "hidden";
+            $data["showOnRoundOver"] = "";
+            if ($this->roundsCounter == 6) {
+                $data["hideOnGameOver"] = "hidden";
+                $data["showOnGameOver"] = "";
+            }
         }
-            return $roll->getLastRollsImages();
+        return $data;
+    }
+
+    private function calculatePoints($diceArray): void
+    {
+        foreach ($diceArray as $value) {
+            if ($value == $this->roundsCounter) {
+                $this->totalPoints += $value;
+            }
+        }
+        if (($this->roundsCounter == 6) && ($this->totalPoints >= 63)) {
+            $this->totalPoints += 50;
+        }
     }
 }

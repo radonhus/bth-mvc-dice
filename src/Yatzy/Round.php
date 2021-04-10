@@ -8,26 +8,26 @@ use riax20\Yatzy\Hand;
 class Round
 {
     private object $hand;
-    private int $rollsCounter;
+    private int $reRollsCounter;
 
     public function __construct()
     {
         $this->hand = new Hand();
-        $this->rollsCounter = 1;
+        $this->reRollsCounter = 0;
     }
 
-    public function getValues(): array
+    public function getRollsAndValues(): array
     {
-        return $this->hand->getDiceValues();
+        $values = $this->hand->getDiceValues();
+        array_unshift($values, $this->reRollsCounter);
+        return $values;
     }
 
     public function rollDice($keys): array
     {
-        if ($this->rollsCounter < 3) {
-            $this->hand->rollSelectedDice($keys);
-            $this->rollsCounter += 1;
-        }
+        $this->hand->rollSelectedDice($keys);
+        $this->reRollsCounter += 1;
 
-        return $this->hand->getDiceValues();
+        return $this->getRollsAndValues();
     }
 }

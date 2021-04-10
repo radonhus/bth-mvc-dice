@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 use FastRoute\RouteCollector;
 
+$router = $router ?? null;
+
 $router->addRoute("GET", "/test", function () {
     // A quick and dirty way to test the router or the request.
     return "Testing response";
@@ -31,7 +33,8 @@ $router->addGroup("/game21", function (RouteCollector $router) {
 });
 
 $router->addGroup("/yatzy", function (RouteCollector $router) {
-    $router->addRoute("GET", "", ["\Mos\Controller\YatzyController", "welcome"]);
+    $router->addRoute("GET", "", ["\Mos\Controller\YatzyController", "start"]);
+    $router->addRoute("POST", "", ["\Mos\Controller\YatzyController", "play"]);
 });
 
 $router->addGroup("/some", function (RouteCollector $router) {

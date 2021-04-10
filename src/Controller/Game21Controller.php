@@ -12,49 +12,39 @@ use function Mos\Functions\renderView;
 use riax20\Dice\Game21;
 
 /**
- * Controller for a sample route an controller class.
+ * Controller class for Game21
  */
-class Game21Controller
+class Game21Controller extends ControllerBase
 {
     public function welcome(): ResponseInterface
     {
-        $psr17Factory = new Psr17Factory();
-
         $data = [
             "message" => "Let's play!",
         ];
 
         $body = renderView("layout/dicestart.php", $data);
 
-        return $psr17Factory
-            ->createResponse(200)
-            ->withBody($psr17Factory->createStream($body));
+        return $this->response($body);
     }
 
     public function initiate(): ResponseInterface
     {
-        $psr17Factory = new Psr17Factory();
 
         $_SESSION["play"] = new Game21(intval($_POST["oneortwo"]));
 
         $data = $_SESSION["play"]->playGame();
         $body = renderView("layout/diceplay.php", $data);
 
-        return $psr17Factory
-            ->createResponse(200)
-            ->withBody($psr17Factory->createStream($body));
+        return $this->response($body);
     }
 
     public function play(): ResponseInterface
     {
-        $psr17Factory = new Psr17Factory();
 
         $data = $_SESSION["play"]->playGame();
         $body = renderView("layout/diceplay.php", $data);
 
-        return $psr17Factory
-            ->createResponse(200)
-            ->withBody($psr17Factory->createStream($body));
+        return $this->response($body);
     }
 
 }

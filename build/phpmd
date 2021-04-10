@@ -1,1 +1,0 @@
-C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Controller\Debug.php:24	Avoid using static access to class '\Nyholm\Psr7\Stream' in method '__invoke'.

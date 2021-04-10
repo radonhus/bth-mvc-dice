@@ -17,20 +17,14 @@ use function Mos\Functions\{
 /**
  * Controller for the session routes.
  */
-class Session
+class Session extends ControllerBase
 {
     public function index(): ResponseInterface
     {
-        $psr17Factory = new Psr17Factory();
-
         $body = renderView("layout/session.php");
 
-        return $psr17Factory
-            ->createResponse(200)
-            ->withBody($psr17Factory->createStream($body));
+        return $this->response($body);
     }
-
-
 
     public function destroy(): ResponseInterface
     {

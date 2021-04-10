@@ -12,12 +12,10 @@ use function Mos\Functions\renderTwigView;
 /**
  * Controller for showing how Twig views works.
  */
-class TwigView
+class TwigView extends ControllerBase
 {
     public function __invoke(): ResponseInterface
     {
-        $psr17Factory = new Psr17Factory();
-
         $data = [
             "header" => "Twig page",
             "message" => "Hey, edit this to do it youreself!",
@@ -25,8 +23,6 @@ class TwigView
 
         $body = renderTwigView("index.html", $data);
 
-        return $psr17Factory
-            ->createResponse(200)
-            ->withBody($psr17Factory->createStream($body));
+        return $this->response($body);
     }
 }
