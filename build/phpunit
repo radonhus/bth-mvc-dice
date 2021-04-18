@@ -1,29 +1,11 @@
 PHPUnit 9.5.4 by Sebastian Bergmann and contributors.
 
-......EEE................                                         25 / 25 (100%)
+.........................                                         25 / 25 (100%)
 
-Time: 00:02.498, Memory: 20.00 MB
+Time: 00:02.611, Memory: 20.00 MB
 
-There were 3 errors:
+OK (25 tests, 26 assertions)
 
-1) Mos\Controller\ControllerFormTest::testCreateTheControllerClass
-Error: Class 'Mos\Controller\Form' not found
+Generating code coverage report in Clover XML format ... done [00:00.177]
 
-C:\Users\Richard\Documents\dbwebb\mvc\me\game\test\Controller\ControllerFormTest.php:20
-
-2) Mos\Controller\ControllerFormTest::testControllerViewAction
-Error: Class 'Mos\Controller\Form' not found
-
-C:\Users\Richard\Documents\dbwebb\mvc\me\game\test\Controller\ControllerFormTest.php:30
-
-3) Mos\Controller\ControllerFormTest::testControllerProcessAction
-Error: Class 'Mos\Controller\Form' not found
-
-C:\Users\Richard\Documents\dbwebb\mvc\me\game\test\Controller\ControllerFormTest.php:45
-
-ERRORS!
-Tests: 25, Assertions: 23, Errors: 3.
-
-Generating code coverage report in Clover XML format ... done [00:00.197]
-
-Generating code coverage report in HTML format ... done [00:00.232]
+Generating code coverage report in HTML format ... done [00:00.244]

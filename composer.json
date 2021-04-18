@@ -1,4 +1,6 @@
 {
+    "name": "same/game",
+    "description": "student project for learning object-oriented php",
     "autoload": {
         "psr-4": {
             "Mos\\": "src/",

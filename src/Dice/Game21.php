@@ -4,12 +4,6 @@ declare(strict_types=1);
 
 namespace riax20\Dice;
 
-use function Mos\Functions\{
-    renderView,
-    sendResponse,
-    url
-};
-
 use riax20\Dice\DiceHand;
 use riax20\Dice\GraphicalDice;
 
