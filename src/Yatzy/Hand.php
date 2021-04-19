@@ -18,13 +18,16 @@ class Hand
         }
     }
 
-    public function rollSelectedDice($keys): void
+    public function rollSelectedDice($keys): array
     {
+        $newDiceValues = [];
         $nrOfDice = count($keys);
         for ($i=0; $i < $nrOfDice ; $i++) {
             $diceNr = $keys[$i];
-            $this->diceArray[$diceNr]->rollOneDice();
+            $value = $this->diceArray[$diceNr]->rollOneDice();
+            array_push($newDiceValues, $value);
         }
+        return $newDiceValues;
     }
 
     public function getDiceValues(): array
