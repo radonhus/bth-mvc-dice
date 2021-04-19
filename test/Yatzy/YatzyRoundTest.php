@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Test cases for the Hand class of the Yatzy game.
+ * Test cases for the Round class of the Yatzy game.
  */
 class YatzyRoundTest extends TestCase
 {

@@ -2,9 +2,91 @@
 
 declare(strict_types=1);
 
-namespace riax20\Yatzy;
+class Dice
+{
+    private int $value;
 
-use riax20\Yatzy\Round;
+    public function __construct()
+    {
+        $this->rollOneDice();
+    }
+
+    public function rollOneDice(): int
+    {
+        $this->value = rand(1, 6);
+
+        return $this->value;
+    }
+
+    public function getDiceValue(): int
+    {
+        return $this->value;
+    }
+}
+
+class Hand
+{
+    private array $diceArray;
+
+    public function __construct()
+    {
+        $this->diceArray = [];
+        for ($i = 0; $i < 5 ; $i++) {
+            $oneNewDice = new Dice();
+            array_push($this->diceArray, $oneNewDice);
+        }
+    }
+
+    public function rollSelectedDice($keys): array
+    {
+        $newDiceValues = [];
+        $nrOfDice = count($keys);
+        for ($i=0; $i < $nrOfDice ; $i++) {
+            $diceNr = $keys[$i];
+            $value = $this->diceArray[$diceNr]->rollOneDice();
+            array_push($newDiceValues, $value);
+        }
+        return $newDiceValues;
+    }
+
+    public function getDiceValues(): array
+    {
+        $diceValues = [];
+        for ($i=0; $i < 5 ; $i++) {
+            $value = $this->diceArray[$i]->getDiceValue();
+            array_push($diceValues, $value);
+        }
+        return $diceValues;
+    }
+}
+
+class Round
+{
+    private object $hand;
+    private int $reRollsCounter;
+
+    public function __construct()
+    {
+        $this->hand = new Hand();
+        $this->reRollsCounter = 0;
+    }
+
+    public function getRollsAndValues(): array
+    {
+        $values = $this->hand->getDiceValues();
+        array_unshift($values, $this->reRollsCounter);
+        return $values;
+    }
+
+    public function rollDice($keys): array
+    {
+        $this->hand->rollSelectedDice($keys);
+        $this->reRollsCounter += 1;
+
+        return $this->getRollsAndValues();
+    }
+}
+
 
 class Yatzy
 {
@@ -55,7 +137,7 @@ class Yatzy
             $rollsAndValues = $this->currentHand->getRollsAndValues();
             $data["diceArray"] = array_slice($rollsAndValues, -5);
 
-            $this->calculatePoints($data["diceArray"], $this->currentRound, $this->roundsCounter);
+            $this->calculatePoints($data["diceArray"]);
             $data["totalPoints"] = $this->totalPoints;
 
             return $this->startNewRound();
@@ -69,7 +151,7 @@ class Yatzy
         return $this->reRoll($diceToReroll);
     }
 
-    public function reRoll($diceToReroll): array
+    private function reRoll($diceToReroll): array
     {
         $rollsAndValues = [];
         $data = [];
@@ -93,7 +175,7 @@ class Yatzy
             if ($this->roundsCounter == 6) {
                 $this->currentRound = intval($this->roundsLeft);
 
-                $this->calculatePoints($data["diceArray"], $this->currentRound, $this->roundsCounter);
+                $this->calculatePoints($data["diceArray"]);
                 $data["totalPoints"] = $this->totalPoints;
 
                 $this->roundsLeft = "";
@@ -105,16 +187,27 @@ class Yatzy
         return $data;
     }
 
-    private function calculatePoints($diceArray, $chosenRound, $roundsPlayed): int
+    private function calculatePoints($diceArray): int
     {
         foreach ($diceArray as $value) {
-            if ($value == $chosenRound) {
+            if ($value == $this->currentRound) {
                 $this->totalPoints += $value;
             }
         }
-        if (($roundsPlayed == 6) && ($this->totalPoints >= 63)) {
+        if (($this->roundsCounter == 6) && ($this->totalPoints >= 63)) {
             $this->totalPoints += 50;
         }
         return $this->totalPoints;
     }
 }
+
+// 
+// $yatzyObject = new Yatzy();
+//
+// $yatzyObject->startNewRound();
+// $ett = $yatzyObject->currentHand;
+//
+// $yatzyObject->startNewRound();
+// $two = $yatzyObject->currentHand;
+//
+// echo($ett == $two);
