@@ -51,10 +51,10 @@ class YatzyYatzyTest extends TestCase
             "roll" => "Roll selected dice",
             2 => "selected"
         ];
-        $dataAfterFirstReRoll = $yatzyObject->play($post);
+        $dataAfterFirstRoll = $yatzyObject->play($post);
 
         $this->assertEquals($dataInitialRoll["nrOfRerolls"], 0);
-        $this->assertEquals($dataAfterFirstReRoll["nrOfRerolls"], 1);
+        $this->assertEquals($dataAfterFirstRoll["nrOfRerolls"], 1);
     }
 
     /**
@@ -68,10 +68,10 @@ class YatzyYatzyTest extends TestCase
             "roundOver" => "Save points + start next round",
             "selectedRound" => "4"
         ];
-        $dataAfterFirstReRoll = $yatzyObject->play($post);
+        $dataAfterFirstRoll = $yatzyObject->play($post);
 
         $this->assertEquals($dataInitialRoll["nrOfRoundsPlayed"], 1);
-        $this->assertEquals($dataAfterFirstReRoll["nrOfRoundsPlayed"], 2);
+        $this->assertEquals($dataAfterFirstRoll["nrOfRoundsPlayed"], 2);
     }
 
     /**
@@ -85,12 +85,12 @@ class YatzyYatzyTest extends TestCase
         $yatzyObject = new Yatzy();
         $dataInitialRoll = $yatzyObject->startNewRound();
 
-        $dataAfterFirstReRoll = $publicReRoll->invokeArgs($yatzyObject, [[]]);
-        $dataAfterSecondReRoll = $publicReRoll->invokeArgs($yatzyObject, [[]]);
+        $dataAfterFirstRoll = $publicReRoll->invokeArgs($yatzyObject, [[]]);
+        $dataAfterSecondRoll = $publicReRoll->invokeArgs($yatzyObject, [[]]);
 
         $this->assertEquals($dataInitialRoll["hideOn2RerollsMade"], "");
-        $this->assertEquals($dataAfterFirstReRoll["hideOn2RerollsMade"], "");
-        $this->assertEquals($dataAfterSecondReRoll["hideOn2RerollsMade"], "hidden");
+        $this->assertEquals($dataAfterFirstRoll["hideOn2RerollsMade"], "");
+        $this->assertEquals($dataAfterSecondRoll["hideOn2RerollsMade"], "hidden");
     }
 
     /**
@@ -127,7 +127,7 @@ class YatzyYatzyTest extends TestCase
         $publicCalc->setAccessible(true);
 
         $yatzyObject = new Yatzy();
-        $dataInitialRoll = $yatzyObject->startNewRound();
+        $yatzyObject->startNewRound();
 
         $pointsFirstRound = $publicCalc->invokeArgs($yatzyObject, [[5, 5, 5, 5, 5], 5, 4]);
         $pointsSecondRound = $publicCalc->invokeArgs($yatzyObject, [[6, 6, 6, 6, 6], 6, 5]);
@@ -145,7 +145,7 @@ class YatzyYatzyTest extends TestCase
         $publicCalc->setAccessible(true);
 
         $yatzyObject = new Yatzy();
-        $dataInitialRoll = $yatzyObject->startNewRound();
+        $yatzyObject->startNewRound();
 
         $pointsFirstRound = $publicCalc->invokeArgs($yatzyObject, [[100], 100, 6]);
 
