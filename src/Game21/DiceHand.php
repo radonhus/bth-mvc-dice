@@ -9,21 +9,22 @@ class DiceHand
     private array $allDice;
     private int $nrOfDice;
 
-    public function __construct($nrOfDice)
+    public function __construct(int $nrOfDice, int $sides = 6)
     {
         $this->allDice = [];
         $this->nrOfDice = $nrOfDice;
         for ($i = 0; $i < $nrOfDice ; $i++) {
-            $newDice = new GraphicalDice();
+            $newDice = new GraphicalDice($sides);
             array_push($this->allDice, $newDice);
         }
     }
 
-    public function rollAllDice(): void
+    public function rollAllDice(): array
     {
         for ($i=0; $i < $this->nrOfDice ; $i++) {
             $this->allDice[$i]->rollDice();
         }
+        return $this->allDice;
     }
 
     public function getLastRolls(): array

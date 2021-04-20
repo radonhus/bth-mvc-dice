@@ -23,7 +23,6 @@ class Game21Controller extends ControllerBase
         ];
 
         $body = renderView("layout/dicestart.php", $data);
-
         return $this->response($body);
     }
 

@@ -15,7 +15,7 @@ class Game21
     private string $showOnGameOver;
     private array $sum;
 
-    public function __construct($nrOfDice)
+    public function __construct(int $nrOfDice = 1)
     {
         $this->nrOfDice = $nrOfDice;
         $this->sum = [ "user" => 0, "cpu" => 0 ];
@@ -36,7 +36,8 @@ class Game21
         }
 
         if (isset($_POST["stop"])) {
-            $data["message"] = $this->gameOver();
+            $sumCpu = $this->calculateCpuResult();
+            $data["message"] = $this->gameOver($this->sum["user"], $sumCpu);
             $data["standings"] = $this->standings();
             $data["diceImages"] = $this->latestDiceImages;
             $data["hideOnGameOver"] = $this->hideOnGameOver;
@@ -47,8 +48,9 @@ class Game21
 
         $this->latestDiceImages = $this->newRoll("user");
         if ($this->sum["user"] >= 21) {
-             $data["message"] = $this->gameOver();
-             $data["standings"] = $this->standings();
+            $sumCpu = $this->calculateCpuResult();
+            $data["message"] = $this->gameOver($this->sum["user"], $sumCpu);
+            $data["standings"] = $this->standings();
         }
         $data["diceImages"] = $this->latestDiceImages;
         $data["hideOnGameOver"] = $this->hideOnGameOver;
@@ -57,7 +59,7 @@ class Game21
         return $data;
     }
 
-    private function gameOver(): string
+    private function gameOver(int $sumUser, int $sumCpu): string
     {
         $this->hideOnGameOver = "hidden";
         $this->showOnGameOver = "";
@@ -65,29 +67,28 @@ class Game21
         $_SESSION["userWins"] = $_SESSION["userWins"] ?? 0;
         $result = "";
 
-        if ($this->sum["user"] <= 21) {
-            $this->opponentResult(0);
-            if ($this->sum["user"] == 21) {
+        if ($sumUser <= 21) {
+            if ($sumUser == 21) {
                 $result = "<strong>WOW! You got 21!</strong> ";
             }
 
-            if (($this->sum["cpu"] > 21) || ($this->sum["cpu"] < $this->sum["user"])) {
+            if (($sumCpu > 21) || ($sumCpu < $sumUser)) {
                 $_SESSION["userWins"] += 1;
                 $result .= "You won!";
-                $result .= " You got " . $this->sum["user"] . " points ";
-                $result .= "and your opponent got " . $this->sum["cpu"] . " points.";
+                $result .= " You got " . $sumUser . " points ";
+                $result .= "and your opponent got " . $sumCpu . " points.";
                 return $result;
             }
 
             $_SESSION["cpuWins"] += 1;
             $result .= "You lost!";
-            $result .= " You got " . $this->sum["user"] . " points ";
-            $result .= "and your opponent got " . $this->sum["cpu"] . " points.";
+            $result .= " You got " . $sumUser . " points ";
+            $result .= "and your opponent got " . $sumCpu . " points.";
             return $result;
         }
 
         $_SESSION["cpuWins"] += 1;
-        $result = "You lost! You got " . $this->sum["user"] . " points.";
+        $result = "You lost! You got " . $sumUser . " points.";
         return $result;
     }
 
@@ -98,7 +99,7 @@ class Game21
         return $standings;
     }
 
-    private function opponentResult($zero)
+    private function calculateCpuResult(int $zero = 0)
     {
         $this->sum["cpu"] = $zero;
         while ($this->sum["cpu"] < 21) {
@@ -107,16 +108,17 @@ class Game21
                 break;
             }
         }
+        return $this->sum["cpu"];
     }
 
-    private function newRoll($player): array
+    private function newRoll(string $player, int $sides = 6): array
     {
-        $roll = new DiceHand($this->nrOfDice);
+        $roll = new DiceHand($this->nrOfDice, $sides);
         $rollValuesArray = $roll->getLastRolls();
         $nrOfRolls = count($rollValuesArray);
         for ($i=0; $i < $nrOfRolls ; $i++) {
             $this->sum[$player] += intval($rollValuesArray[$i]);
         }
-            return $roll->getLastRollsImages();
+        return $roll->getLastRollsImages();
     }
 }

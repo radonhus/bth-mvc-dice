@@ -9,7 +9,7 @@ class Dice
     private int $lastRoll;
     private int $sides;
 
-    public function __construct($sides)
+    public function __construct(int $sides = 6)
     {
         $this->sides = $sides;
         $this->lastRoll = $this->rollDice();
@@ -26,7 +26,7 @@ class Dice
         return $this->lastRoll;
     }
 
-    public function changeDiceSize($newSize)
+    public function changeDiceSize(int $newSize)
     {
         $this->sides = $newSize;
     }

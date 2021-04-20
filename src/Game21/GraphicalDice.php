@@ -6,12 +6,6 @@ namespace riax20\Game21;
 
 class GraphicalDice extends Dice
 {
-    const SIDES = 6;
-
-    public function __construct()
-    {
-        parent::__construct(self::SIDES);
-    }
 
     public function diceImage(): string
     {
