@@ -9,7 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 
 use function Mos\Functions\renderView;
 
-use riax20\Dice\Game21;
+use riax20\Game21\Game21;
 
 /**
  * Controller class for Game21

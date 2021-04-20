@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace riax20\Dice;
+namespace riax20\Game21;
 
 class GraphicalDice extends Dice
 {

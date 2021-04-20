@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace riax20\Dice;
+namespace riax20\Game21;
 
-use riax20\Dice\DiceHand;
-use riax20\Dice\GraphicalDice;
+use riax20\Game21\DiceHand;
+use riax20\Game21\GraphicalDice;
 
 class Game21
 {

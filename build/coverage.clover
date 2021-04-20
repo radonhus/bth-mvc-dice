@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1618875008">
-  <project timestamp="1618875008">
+<coverage generated="1618929175">
+  <project timestamp="1618929175">
     <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\config\bootstrap.php">
       <line num="10" type="stmt" count="1"/>
       <line num="11" type="stmt" count="1"/>
@@ -167,26 +167,26 @@
       <line num="36" type="stmt" count="0"/>
       <metrics loc="39" ncloc="36" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="9" coveredelements="0"/>
     </file>
-    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\Dice.php">
-      <class name="riax20\Dice\Dice" namespace="global">
-        <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
+    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Game21\Dice.php">
+      <class name="riax20\Game21\Dice" namespace="global">
+        <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
       </class>
-      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="14" type="stmt" count="0"/>
-      <line num="15" type="stmt" count="0"/>
-      <line num="16" type="stmt" count="0"/>
-      <line num="18" type="method" name="rollDice" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="20" type="stmt" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <line num="24" type="method" name="getLastRoll" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="26" type="stmt" count="0"/>
-      <line num="29" type="method" name="changeDiceSize" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <metrics loc="34" ncloc="34" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="0" elements="12" coveredelements="0"/>
+      <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="14" type="stmt" count="4"/>
+      <line num="15" type="stmt" count="4"/>
+      <line num="16" type="stmt" count="4"/>
+      <line num="18" type="method" name="rollDice" visibility="public" complexity="1" crap="1" count="4"/>
+      <line num="20" type="stmt" count="4"/>
+      <line num="21" type="stmt" count="4"/>
+      <line num="24" type="method" name="getLastRoll" visibility="public" complexity="1" crap="1" count="3"/>
+      <line num="26" type="stmt" count="3"/>
+      <line num="29" type="method" name="changeDiceSize" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="31" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <metrics loc="34" ncloc="34" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="8" coveredstatements="8" elements="12" coveredelements="12"/>
     </file>
-    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\DiceHand.php">
-      <class name="riax20\Dice\DiceHand" namespace="global">
+    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Game21\DiceHand.php">
+      <class name="riax20\Game21\DiceHand" namespace="global">
         <metrics complexity="8" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="0" elements="21" coveredelements="0"/>
       </class>
       <line num="12" type="method" name="__construct" visibility="public" complexity="2" crap="6" count="0"/>
@@ -212,8 +212,8 @@
       <line num="44" type="stmt" count="0"/>
       <metrics loc="47" ncloc="47" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="17" coveredstatements="0" elements="21" coveredelements="0"/>
     </file>
-    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\Game21.php">
-      <class name="riax20\Dice\Game21" namespace="global">
+    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Game21\Game21.php">
+      <class name="riax20\Game21\Game21" namespace="global">
         <metrics complexity="16" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="65" coveredstatements="0" elements="71" coveredelements="0"/>
       </class>
       <line num="18" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
@@ -289,8 +289,8 @@
       <line num="120" type="stmt" count="0"/>
       <metrics loc="122" ncloc="122" classes="1" methods="6" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="65" coveredstatements="0" elements="71" coveredelements="0"/>
     </file>
-    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Dice\GraphicalDice.php">
-      <class name="riax20\Dice\GraphicalDice" namespace="global">
+    <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Game21\GraphicalDice.php">
+      <class name="riax20\Game21\GraphicalDice" namespace="global">
         <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="0" elements="5" coveredelements="0"/>
       </class>
       <line num="11" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
@@ -428,7 +428,7 @@
       <line num="108" type="method" name="calculatePoints" visibility="private" complexity="5" crap="5" count="4"/>
       <line num="110" type="stmt" count="4"/>
       <line num="111" type="stmt" count="4"/>
-      <line num="112" type="stmt" count="3"/>
+      <line num="112" type="stmt" count="2"/>
       <line num="115" type="stmt" count="4"/>
       <line num="116" type="stmt" count="1"/>
       <line num="118" type="stmt" count="4"/>
@@ -494,6 +494,6 @@
       <line num="213" type="stmt" count="2"/>
       <metrics loc="213" ncloc="139" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="57" coveredstatements="53" elements="57" coveredelements="53"/>
     </file>
-    <metrics files="21" loc="1066" ncloc="949" classes="18" methods="46" coveredmethods="25" conditionals="0" coveredconditionals="0" statements="330" coveredstatements="189" elements="376" coveredelements="214"/>
+    <metrics files="21" loc="1066" ncloc="949" classes="18" methods="46" coveredmethods="29" conditionals="0" coveredconditionals="0" statements="330" coveredstatements="197" elements="376" coveredelements="226"/>
   </project>
 </coverage>
