@@ -52,7 +52,7 @@ class Game21Game21Test extends TestCase
         ];
         $_POST = ["clearstandings" => "clearstandings"];
 
-        $data = $testGame->playGame();
+        $testGame->playGame();
 
         $this->assertEquals(0, $_SESSION["cpuWins"]);
         $this->assertEquals(0, $_SESSION["userWins"]);
@@ -123,14 +123,14 @@ class Game21Game21Test extends TestCase
      */
     public function testcalculateCpuResultReturnsInteger()
     {
-        $publicCalculateCpuResult = new ReflectionMethod(
+        $publicCalculateCpu = new ReflectionMethod(
             "riax20\Game21\Game21",
             "calculateCpuResult"
         );
-        $publicCalculateCpuResult->setAccessible(true);
+        $publicCalculateCpu->setAccessible(true);
 
         $testGame = new Game21(1);
-        $result = $publicCalculateCpuResult->invoke($testGame);
+        $result = $publicCalculateCpu->invoke($testGame);
 
         $this->assertIsInt($result);
         $this->assertGreaterThanOrEqual(1, $result);

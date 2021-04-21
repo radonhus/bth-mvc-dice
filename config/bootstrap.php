@@ -6,7 +6,8 @@
 
 declare(strict_types=1);
 
-function setupEnvironment() {
+function setupEnvironment()
+{
 
     // Setup error reporting
     error_reporting(-1);                // Report all type of errors

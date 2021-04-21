@@ -67,5 +67,4 @@ class ControllerYatzyTest extends TestCase
 
         $this->assertInstanceOf("Nyholm\Psr7\Response", $result);
     }
-
 }

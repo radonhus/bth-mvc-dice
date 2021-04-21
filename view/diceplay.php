@@ -15,7 +15,7 @@ $standings = $standings ?? null;
 <p>Your latest roll:</p>
 
 <p class="dice-utf8">
-<?php foreach($diceImages as $key=>$value): ?>
+<?php foreach ($diceImages as $key => $value) : ?>
     <i class="<?= $value ?>"></i>
 <?php endforeach; ?>
 </p>

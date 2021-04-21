@@ -85,5 +85,4 @@ class Game21HandTest extends TestCase
         $this->assertStringContainsString("dice-", $arrayDiceImages[1]);
         $this->assertStringContainsString("dice-", $arrayDiceImages[2]);
     }
-
 }

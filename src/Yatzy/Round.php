@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace riax20\Yatzy;
+
 use riax20\Yatzy\Hand;
 
 class Round

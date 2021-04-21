@@ -69,5 +69,4 @@ class ControllerGame21Test extends TestCase
 
         $this->assertInstanceOf("Nyholm\Psr7\Response", $result);
     }
-
 }

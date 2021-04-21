@@ -35,5 +35,4 @@ class Game21GraphicalDiceTest extends TestCase
 
         $this->assertStringContainsString("dice-", $testString);
     }
-
 }

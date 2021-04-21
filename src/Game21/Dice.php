@@ -30,5 +30,4 @@ class Dice
     {
         $this->sides = $newSize;
     }
-
 }

@@ -116,7 +116,7 @@ class Game21
         $roll = new DiceHand($this->nrOfDice, $sides);
         $rollValuesArray = $roll->getLastRolls();
         $nrOfRolls = count($rollValuesArray);
-        for ($i=0; $i < $nrOfRolls ; $i++) {
+        for ($i=0; $i < $nrOfRolls; $i++) {
             $this->sum[$player] += intval($rollValuesArray[$i]);
         }
         return $roll->getLastRollsImages();

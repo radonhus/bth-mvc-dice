@@ -151,5 +151,4 @@ class YatzyYatzyTest extends TestCase
 
         $this->assertEquals($pointsFirstRound, 150);
     }
-
 }

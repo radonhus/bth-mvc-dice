@@ -43,5 +43,4 @@ class ConfigBootstrapTest extends TestCase
 
         $this->assertEquals(1, $errorSetting);
     }
-
 }

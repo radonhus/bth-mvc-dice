@@ -45,5 +45,4 @@ class Game21Controller extends ControllerBase
 
         return $this->response($body);
     }
-
 }

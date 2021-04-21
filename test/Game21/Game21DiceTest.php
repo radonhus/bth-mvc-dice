@@ -55,5 +55,4 @@ class Game21DiceTest extends TestCase
 
         $this->assertEquals(1, $testDice->getLastRoll());
     }
-
 }

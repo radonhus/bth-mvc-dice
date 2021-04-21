@@ -35,5 +35,4 @@ class YatzyController extends ControllerBase
 
         return $this->response($body);
     }
-
 }

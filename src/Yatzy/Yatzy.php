@@ -49,7 +49,7 @@ class Yatzy
         $data = [];
 
         if (isset($post["roundOver"])) {
-            $this->roundsLeft = str_replace($post["selectedRound"],"", $this->roundsLeft);
+            $this->roundsLeft = str_replace($post["selectedRound"], "", $this->roundsLeft);
             $this->currentRound = intval($post["selectedRound"]);
 
             $rollsAndValues = $this->currentHand->getRollsAndValues();
@@ -61,7 +61,7 @@ class Yatzy
             return $this->startNewRound();
         }
         $diceToReroll = [];
-        for ($i=0; $i <5 ; $i++) {
+        for ($i=0; $i <5; $i++) {
             if (isset($post[strval($i)])) {
                 array_push($diceToReroll, $i);
             }

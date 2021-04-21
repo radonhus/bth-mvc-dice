@@ -32,5 +32,4 @@ class YatzyDiceTest extends TestCase
         $this->assertGreaterThanOrEqual(1, $testDice->getDiceValue());
         $this->assertLessThanOrEqual(6, $testDice->getDiceValue());
     }
-
 }
