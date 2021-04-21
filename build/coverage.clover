@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1618960293">
-  <project timestamp="1618960293">
+<coverage generated="1619011494">
+  <project timestamp="1619011494">
     <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\config\bootstrap.php">
-      <line num="10" type="stmt" count="1"/>
-      <line num="11" type="stmt" count="1"/>
-      <line num="14" type="stmt" count="1"/>
-      <line num="15" type="stmt" count="0"/>
-      <line num="16" type="stmt" count="0"/>
-      <metrics loc="17" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="3" elements="5" coveredelements="3"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="2"/>
+      <line num="16" type="stmt" count="2"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="25" type="stmt" count="1"/>
+      <metrics loc="25" ncloc="17" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="5" elements="7" coveredelements="5"/>
     </file>
     <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\config\router.php">
-      <line num="13" type="stmt" count="0"/>
-      <line num="14" type="stmt" count="0"/>
-      <line num="15" type="stmt" count="0"/>
-      <line num="18" type="stmt" count="0"/>
+      <line num="13" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <line num="18" type="stmt" count="1"/>
       <line num="20" type="stmt" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <line num="23" type="stmt" count="0"/>
-      <line num="24" type="stmt" count="0"/>
-      <line num="25" type="stmt" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="28" type="stmt" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="33" type="stmt" count="0"/>
-      <line num="34" type="stmt" count="0"/>
-      <line num="35" type="stmt" count="0"/>
-      <line num="36" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <line num="41" type="stmt" count="0"/>
-      <line num="43" type="stmt" count="0"/>
-      <line num="44" type="stmt" count="0"/>
-      <line num="45" type="stmt" count="0"/>
-      <metrics loc="45" ncloc="39" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="0" elements="25" coveredelements="0"/>
+      <line num="21" type="stmt" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <line num="24" type="stmt" count="1"/>
+      <line num="25" type="stmt" count="1"/>
+      <line num="27" type="stmt" count="1"/>
+      <line num="28" type="stmt" count="1"/>
+      <line num="29" type="stmt" count="1"/>
+      <line num="30" type="stmt" count="1"/>
+      <line num="32" type="stmt" count="1"/>
+      <line num="33" type="stmt" count="1"/>
+      <line num="34" type="stmt" count="1"/>
+      <line num="35" type="stmt" count="1"/>
+      <line num="36" type="stmt" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="45" type="stmt" count="1"/>
+      <metrics loc="45" ncloc="39" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="25" coveredstatements="24" elements="25" coveredelements="24"/>
     </file>
     <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\src\Controller\ControllerBase.php">
       <class name="Mos\Controller\ControllerBase" namespace="global">
@@ -279,7 +281,7 @@
       <line num="105" type="stmt" count="3"/>
       <line num="106" type="stmt" count="3"/>
       <line num="107" type="stmt" count="3"/>
-      <line num="108" type="stmt" count="2"/>
+      <line num="108" type="stmt" count="3"/>
       <line num="111" type="stmt" count="3"/>
       <line num="114" type="method" name="newRoll" visibility="private" complexity="2" crap="2" count="8"/>
       <line num="116" type="stmt" count="8"/>
@@ -492,6 +494,6 @@
       <line num="213" type="stmt" count="2"/>
       <metrics loc="213" ncloc="139" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="57" coveredstatements="53" elements="57" coveredelements="53"/>
     </file>
-    <metrics files="21" loc="1062" ncloc="945" classes="18" methods="45" coveredmethods="45" conditionals="0" coveredconditionals="0" statements="329" coveredstatements="298" elements="374" coveredelements="343"/>
+    <metrics files="21" loc="1070" ncloc="952" classes="18" methods="45" coveredmethods="45" conditionals="0" coveredconditionals="0" statements="331" coveredstatements="324" elements="376" coveredelements="369"/>
   </project>
 </coverage>

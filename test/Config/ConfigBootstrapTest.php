@@ -11,15 +11,37 @@ use PHPUnit\Framework\TestCase;
  */
 class ConfigBootstrapTest extends TestCase
 {
-    private $configFile = INSTALL_PATH . "/config/bootstrap.php";
+    private $bootstrapFile = INSTALL_PATH . "/config/bootstrap.php";
+    private $routerFile = INSTALL_PATH . "/config/router.php";
 
     /**
-     * Require the config file.
+     * Require the bootstrap file.
      */
-    public function testRequireConfigFile()
+    public function testRequirebootstrapFile()
     {
         $exp = 1;
-        $res = require $this->configFile;
+        $res = require $this->bootstrapFile;
         $this->assertEquals($exp, $res);
     }
+
+    /**
+     * Require the router file.
+     */
+    public function testRequireRouterFile()
+    {
+        $exp = 1;
+        $res = require $this->routerFile;
+        $this->assertEquals($exp, $res);
+    }
+
+    /**
+     * Test that bootstrap sets display_errors to 1
+     */
+    public function testBootstrapErrorSetting()
+    {
+        $errorSetting = setupEnvironment();
+
+        $this->assertEquals(1, $errorSetting);
+    }
+
 }
