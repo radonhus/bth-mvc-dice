@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619041640">
-  <project timestamp="1619041640">
+<coverage generated="1619522150">
+  <project timestamp="1619522150">
     <file name="C:\Users\Richard\Documents\dbwebb\mvc\me\game\config\bootstrap.php">
       <line num="13" type="stmt" count="2"/>
       <line num="14" type="stmt" count="2"/>
@@ -281,7 +281,7 @@
       <line num="105" type="stmt" count="3"/>
       <line num="106" type="stmt" count="3"/>
       <line num="107" type="stmt" count="3"/>
-      <line num="108" type="stmt" count="2"/>
+      <line num="108" type="stmt" count="3"/>
       <line num="111" type="stmt" count="3"/>
       <line num="114" type="method" name="newRoll" visibility="private" complexity="2" crap="2" count="8"/>
       <line num="116" type="stmt" count="8"/>
@@ -428,7 +428,7 @@
       <line num="108" type="method" name="calculatePoints" visibility="private" complexity="5" crap="5" count="4"/>
       <line num="110" type="stmt" count="4"/>
       <line num="111" type="stmt" count="4"/>
-      <line num="112" type="stmt" count="2"/>
+      <line num="112" type="stmt" count="3"/>
       <line num="115" type="stmt" count="4"/>
       <line num="116" type="stmt" count="1"/>
       <line num="118" type="stmt" count="4"/>
